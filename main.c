@@ -31,13 +31,18 @@ void usage(char* name)
 {
   printf("Usage\n");
   printf("-----------------\n");
-  printf("%s <text|background> <color>\n"); 
+  printf("%s <text|background> <color>\n");
+  printf("\x1b[31mSu\x1b[38;5;208mpp\x1b[93mor\x1b[32mte\x1b[34md col\x1b[38;5;93mors : \x1b[0m\n");
   for (int i = 0; i < sizeof(colors)/sizeof(struct color); i++)
   {
     printf("\x1b[%im%s\n", colors[i].escape_code_number, colors[i].name);
   }
-
+  
+  printf("-----------------\n");
   printf("\x1b[0m");
+  printf("If you use certain terminals (e.g. kitty) changing\n");
+  printf("the background color may be ignored if the terminal\n");
+  printf("is transparent (opacity is less than 1.0 or 100%)\n");
 }
 
 int main(int argc, char** argv)
@@ -68,7 +73,7 @@ int main(int argc, char** argv)
     {
       if (strcmp(argv[2], colors[i].name) == 0)
       {
-        printf("\x1b[%im", colors[i].escape_code_number + 60);
+        printf("\x1b[%im", colors[i].escape_code_number + 10);
         return 0;
       }
     }
